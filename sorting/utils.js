@@ -26,10 +26,10 @@ function isRight(arr=[]) {
 
 function testTime(name='',fn,arr=[]) {
   const start = Date.now()
-  fn(arr)
+  const newArr = fn(arr)
   const end = Date.now()
   const res = (end - start) / 1000
-  if(isRight(arr)){
+  if(isRight(newArr)){
     console.log(`${name} is use ${res} second`)
   }else{
     console.log('数组没有正确排序！')

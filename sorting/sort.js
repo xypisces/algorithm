@@ -1,39 +1,29 @@
 const utils = require('./utils')
 const { MergeSort } = require('./MergeSort')
-const { QuickSort }  = require('./QuickSort')
+const { QuickSort, QuickSortJS, QuickSort3Way }  = require('./QuickSort')
 ;(async() => {
-  const n = 1000000
+  const n = 100000
   const arr = utils.getRandomArr(n,1,n)
   const arr2 = utils.copyArr(arr)
   // const arr3 = utils.copyArr(arr)
   // const arr4 = utils.copyArr(arr)
   // const arr5 = utils.copyArr(arr)
   // 选择排序例子
-  // QuickSort(arr)
+  // QuickSort3Way(arr)
   // utils.print(arr)
   // utils.print(arr2)
   // 测试使用时间
   // utils.testTime('选择算法',selectSort,arr)
-  // utils.testTime('插入排序', InsertSort, arr)
-  // utils.testTime('插入排序优化版', newInsertSort, arr3)
+  utils.testTime('插入排序', InsertSort, arr)
+  // utils.testTime('插入排序优化版', newInsertSort, arr)
   // utils.testTime('冒泡排序', BubbleSort, arr4)
   // utils.testTime('希尔排序', ShellSort, arr5)
-  utils.testTime('归并排序', MergeSort, arr)
-  utils.testTime('快速排序', QuickSort, arr2)
+  // utils.testTime('归并排序', MergeSort, arr)
+  // utils.testTime('快速排序', QuickSort, arr)
+  utils.testTime('三路快速排序', QuickSortJS, arr2)
 })()
 
 // o(n^2)的排序算法
-// 选择排序
-function selectSort(arr = []) {
-  for(let i=0; i<arr.length; i++){
-    for(let j=i+1; j<arr.length; j++){
-      if(arr[i] > arr[j]) {
-        [arr[i],arr[j]] = [arr[j],arr[i]]
-      }
-    }
-  }
-  return arr;
-}
 // 冒泡排序
 function BubbleSort(arr = []) {
   for(let i=0; i<arr.length; i++){
@@ -44,6 +34,17 @@ function BubbleSort(arr = []) {
     }
   }
   return arr
+}
+// 选择排序
+function selectSort(arr = []) {
+  for(let i=0; i<arr.length; i++){
+    for(let j=i+1; j<arr.length; j++){
+      if(arr[i] > arr[j]) {
+        [arr[i],arr[j]] = [arr[j],arr[i]]
+      }
+    }
+  }
+  return arr;
 }
 // 插入排序
 function InsertSort(arr = []) {
