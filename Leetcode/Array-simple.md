@@ -76,7 +76,7 @@ var singleNumber = function(nums) {
 
 给定两个数组，编写一个函数来计算它们的交集。
 
-```js
+```
 输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
 输出: [4,9]
 ```
@@ -105,5 +105,90 @@ var intersect = function(nums1, nums2) {
       }
     }
     return result
+};
+```
+
+### 从排序数组中删除重复项
+
+给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+
+```
+给定 nums = [0,0,1,1,1,2,2,3,3,4],
+
+函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
+
+你不需要考虑数组中超出新长度后面的元素。
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+  if(nums.length === 0){
+      return 0
+    }
+    let number = 0;
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] !== nums[number]){
+            number++
+          nums[number] = nums[i]
+          
+        }
+    }
+    number+=1
+    return number
+    // nums = [...new Set(nums)]
+    // return nums.length
+};
+```
+
+### 存在重复
+
+给定一个整数数组，判断是否存在重复元素。
+
+如果任何值在数组中出现至少两次，函数返回 true。如果数组中每个元素都不相同，则返回 false。
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+  let len = nums.length
+  for(let i=0; i<len; i++){
+    let target = nums.pop()
+    if(nums.indexOf(target) !== -1){
+      return true
+    }
+  }
+  return false
+};
+```
+
+### 加一
+
+给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
+
+最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。
+
+你可以假设除了整数 0 之外，这个整数不会以零开头。
+
+```
+输入: [4,3,2,1]
+输出: [4,3,2,2]
+解释: 输入数组表示数字 4321。
+```
+
+```js
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function(digits) {
+    
 };
 ```
