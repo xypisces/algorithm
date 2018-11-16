@@ -192,3 +192,116 @@ var plusOne = function(digits) {
     
 };
 ```
+
+### 有效的数独
+
+判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。
+
+- 数字 1-9 在每一行只能出现一次。
+- 数字 1-9 在每一列只能出现一次。
+- 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+
+```js
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function(board) {
+    for(let i=0; i<board.length; i++){
+      if
+    }
+};
+```
+
+### 旋转图像
+
+给定一个 n × n 的二维矩阵表示一个图像。
+
+将图像顺时针旋转 90 度。
+
+```
+给定 matrix = 
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+],
+
+原地旋转输入矩阵，使其变为:
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+```
+
+```js
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var rotate = function(matrix) {
+    
+};
+```
+
+### 移动零
+
+给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。必须在原数组上操作，不能拷贝额外的数组。
+
+```
+输入: [0,1,0,3,12]
+输出: [1,3,12,0,0]
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    
+};
+```
+
+### 买卖股票的最佳时机 II
+
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+
+设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。
+
+注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）
+
+```
+输入: [7,1,5,3,6,4]
+输出: 7
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。
+```
+
+```js
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    const l = prices.length
+    if(l < 2) return 0;
+    let total = 0;
+    let v1 = 0;
+    let v2 = 1;
+    while(v1+1<=l&&v2+1<=l){
+      if(prices[v1] >= prices[v2]){
+        v1++
+        v2++
+      }else{
+        while(prices[v2] <= prices[v2+1] && v2+1<=l){
+          v2++
+        }
+        total += prices[v2] - prices[v1]
+        v2 += 2
+        v1 = v2 - 1
+      }
+    }
+    return total
+};
+```
