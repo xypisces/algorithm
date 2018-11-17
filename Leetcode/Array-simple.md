@@ -207,10 +207,34 @@ var plusOne = function(digits) {
  * @return {boolean}
  */
 var isValidSudoku = function(board) {
-    for(let i=0; i<board.length; i++){
-      if
+  for(let i=0; i<board.length; i++){
+    if(!checked(board[i])) return false
+    let newArr = []
+    for(let j=0; j<board[i].length; j++){
+      newArr.push(board[j][i])
     }
+    if(!checked(newArr)) return false
+  }
+  for(let r = 0; r<3; r++){
+    for(let c=0; c<3; c++){
+      let arr3 = []
+      for(let i = r*3; i<r*3+3; i++){
+        for(let j=c*3; j<c*3+3; j++){
+          arr3.push(board[i][j])
+        }
+      }
+      if(!checked(arr3)) return false
+    }
+  }
+  return true
 };
+function checked(arr){
+  let newArr = arr.filter(i => i!=='.')
+  if(newArr.length !== [...new Set(newArr)].length){
+    return false
+  }
+  return true
+}
 ```
 
 ### 旋转图像
