@@ -1,10 +1,11 @@
+
 ### 两数之和
 
 给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。
 
 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
 
-```JS
+```js
 /**
  * @param {number[]} nums
  * @param {number} target
@@ -12,7 +13,7 @@
  */
 var twoSum = function(nums, target) {
     let arr = [];
-    for(let i=0; i<nums.length; i++){
+    for(let i=0; i < nums.length; i++){
         const idx = nums.indexOf(target - nums[i])
         if( idx !== -1 && idx !== i){
             arr[0] = i
@@ -21,7 +22,7 @@ var twoSum = function(nums, target) {
         }
     }
     return arr
-};
+}
 ```
 
 ### 旋转数组
@@ -189,7 +190,16 @@ var containsDuplicate = function(nums) {
  * @return {number[]}
  */
 var plusOne = function(digits) {
-    
+    let c = 1;
+    for(let i=digits.length - 1; i >=0 ; i--) {
+      digits[i] += c
+      c = Math.floor(digits[i]/10)
+      digits[i] %= 10
+    }
+    if(c>0) {
+      digits.unshift(c)
+    }
+    return digits
 };
 ```
 
@@ -244,6 +254,10 @@ function checked(arr){
 将图像顺时针旋转 90 度。
 
 ```
+分析：首先沿着副对角线翻转一次，然后沿着水平中线翻转一次。
+```
+
+```
 给定 matrix = 
 [
   [1,2,3],
@@ -265,7 +279,19 @@ function checked(arr){
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
 var rotate = function(matrix) {
-    
+    const l = matrix.length
+    //先对角翻转
+    for(let i=0; i<l; i++){
+      for(let j=0; j<l-i; j++){
+        [matrix[i][j],matrix[l-j-1][l-i-1]] = [matrix[l-j-1][l-i-1],matrix[i][j]]
+      }
+    }
+    //再横向翻转
+    for(let i=0; i<l/2; i++){
+      for(let j=0; j<l; j++){
+        [matrix[i][j],matrix[l-i-1][j]] = [matrix[l-i-1][j],matrix[i][j]]
+      }
+    }
 };
 ```
 
