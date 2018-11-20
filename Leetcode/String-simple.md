@@ -158,3 +158,84 @@ var strStr = function(haystack, needle) {
     return -1
 };
 ```
+
+### 整数反转
+
+给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+
+```
+输入: 123
+输出: 321
+
+输入: -123
+输出: -321
+
+输入: 120
+输出: 21
+```
+
+```js
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function(x) {
+  let MAX = Math.pow(2,31)
+  let MIN = -Math.pow(2,31)
+  let num = 0 //反转后的值
+  let sign = 1 //正负的标志值
+  let k = 0 //是否有负
+  let str = x + '' //转换为字符串
+  let n = str.length
+  if(n === 0) return 0
+  if(str.charAt(0) === '-') {
+    sign = -1
+    k = 1
+  }
+  for(var i = n-1; i>=k; i--){
+    if(num > Math.floor(MAX/10) || (num === Math.floor(MAX/10) && Number(str.charAt(i)) >= Math.floor(MAX%10))) {
+      return 0
+    }
+    num = num * 10 + Number(str.charAt(i))
+  }
+  return num * sign
+};
+```
+
+### 有效的字母异位词
+
+给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的一个字母异位词。
+你可以假设字符串只包含小写字母。
+如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
+```
+输入: s = "anagram", t = "nagaram"
+输出: true
+
+输入: s = "rat", t = "car"
+输出: false
+```
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+    let i = 0
+    let k = 0
+    let newT = t
+    if(s.length !== t.length) return false
+    for(let j=0; j<s.length; j++){
+      i++
+      if(newT.indexOf(s.charAt(j)) !== -1) {
+        k++
+        newT = newT.replace(s.charAt(j),'')
+      }
+    }
+    if(i === k){
+      return true
+    }
+    return false
+};
+```

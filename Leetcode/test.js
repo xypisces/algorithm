@@ -1,34 +1,45 @@
-var isValidSudoku = function(board) {
-  for(let i=0; i<board.length; i++){
-    if(!checked(board[i])) return false
-    let newArr = []
-    for(let j=0; j<board[i].length; j++){
-      newArr.push(board[j][i])
-    }
-    if(!checked(newArr)) return false
+var reverse = function(x) {
+  let MAX = Math.pow(2,31)
+  let MIN = -Math.pow(2,31)
+  let num = 0
+  let sign = 1
+  let k = 0
+  let str = x + ''
+  let n = str.length
+  if(n === 0) return 0
+  if(str.charAt(0) === '-') {
+    sign = -1
+    k = 1
   }
-  for(let r = 0; r<3; r++){
-    for(let c=0; c<3; c++){
-      let arr3 = []
-      for(let i = r*3; i<r*3+3; i++){
-        for(let j=c*3; j<c*3+3; j++){
-          arr3.push(board[i][j])
-        }
-      }
-      if(!checked(arr3)) return false
+  for(var i = n-1; i>=k; i--){
+    if(num > Math.floor(MAX/10) || (num === Math.floor(MAX/10) && Number(str.charAt(i)) >= Math.floor(MAX%10))) {
+      return 0
     }
+    num = num * 10 + Number(str.charAt(i))
   }
-  return true
+  return num * sign
 };
-function checked(arr){
-  let newArr = arr.filter(i => i!=='.')
-  if(newArr.length !== [...new Set(newArr)].length){
-    return false
+
+console.log(reverse(1534236469))
+
+var isAnagram = function(s, t) {
+  let i = 0
+  let k = 0
+  let newT = t
+  if(s.length !== t.length) return false
+  for(let j=0; j<s.length; j++){
+    i++
+    if(newT.indexOf(s.charAt(j)) !== -1) {
+      k++
+      console.log(s.charAt(j))
+      newT = newT.replace(s.charAt(j),'')
+      console.log(t)
+    }
   }
-  return true
-}
+  if(i === k){
+    return true
+  }
+  return false
+};
 
-const arr = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]
-
-const val = isValidSudoku(arr)
-console.log(val)
+console.log(isAnagram('aacc','ccac'))
