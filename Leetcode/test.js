@@ -43,3 +43,38 @@ var isAnagram = function(s, t) {
 };
 
 console.log(isAnagram('aacc','ccac'))
+
+var isPalindrome = function(s) {
+  if(s === "") return true
+  let arr = []
+  let s1 = ''
+  let s2 = ''
+  let newS = s.toLocaleLowerCase().replace(/\W/g,'')
+  for(let i=0; i<newS.length; i++){
+    if(newS.charAt(i) !== '_'){
+      arr.push(newS.charAt(i))
+      s1 += newS.charAt(i)
+    }
+  }
+  for(let j=arr.length-1; 0<=j; j--){
+    s2 += arr[j]
+  }
+  if(s1 === s2){
+    return true
+  }
+  return false
+};
+
+console.log(isPalindrome("A man, a plan, a canal: Panama_"))
+
+var countAndSay = function(n) {
+  var _str = '1';
+ for(var i=1;i<n;i++){
+  console.log(_str.match(/1+|2+|3+|4+|5+|6+|7+|8+|9+/g))
+     _str = _str.match(/1+|2+|3+|4+|5+|6+|7+|8+|9+/g).map(v=>''+v.length+v[0]).join('');
+ }
+ return _str
+};
+
+console.log(countAndSay(6)) 
+// 111221

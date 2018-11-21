@@ -15,6 +15,9 @@
  * @return {string}
  */
 var reverseString = function(s) {
+    //利用api
+    return s.split('').reverse().join('')
+    //暴力解法
     let arr = []
     let newString = ''
     for(let i of s) {
@@ -47,6 +50,14 @@ s = "loveleetcode",
  * @return {number}
  */
 var firstUniqChar = function(s) {
+    //优化
+    for(var i = 0 ; i < s.length;i++){
+        if(s.indexOf(s[i]) == s.lastIndexOf(s[i])){
+           return i
+        }
+    }
+    return -1
+    //暴力解法
     let arr = []
     let arr1 = []
     for(let i of s) {
@@ -145,6 +156,9 @@ var myAtoi = function(str) {
  * @return {number}
  */
 var strStr = function(haystack, needle) {
+    //优化
+    return haystack.indexOf(needle)
+    //暴力解法
     if(needle.length === 0) return 0
     for(let i=0; i<haystack.length; i++){
       let j = i
@@ -237,5 +251,125 @@ var isAnagram = function(s, t) {
       return true
     }
     return false
+};
+```
+
+### 最长公共前缀
+
+编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 ""。
+
+```
+输入: ["flower","flow","flight"]
+输出: "fl"
+
+输入: ["dog","racecar","car"]
+输出: ""
+解释: 输入不存在公共前缀。
+```
+
+```js
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function(strs) {
+    let str = ''
+    if(strs.length === 0) return ""
+    for(let i=0; i<strs[0].length; i++){
+      let s = strs[0].charAt(i)
+      let sign = 1
+      for(let j=0; j<strs.length; j++){
+        if(s !== strs[j].charAt(i)) {
+          sign = -1
+          break;
+        }
+      }
+      if(sign === -1) break;
+      str += s
+    }
+    return str
+};
+```
+
+### 验证回文字符串
+
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+
+说明：本题中，我们将空字符串定义为有效的回文串。
+
+```
+输入: "A man, a plan, a canal: Panama"
+输出: true
+输入: "race a car"
+输出: false
+```
+
+```js
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+  // 利用api
+  const _s = s.replace(/[^a-z0-9]/gi,'').toLowerCase();
+  return _s.split('').reverse().join('') == _s
+  // 初始的暴力解法思路
+  if(s === "") return true
+  let arr = []
+  let s1 = ''
+  let s2 = ''
+  let newS = s.toLocaleLowerCase().replace(/\W/g,'')
+  for(let i=0; i<newS.length; i++){
+    if(newS.charAt(i) !== '_'){
+      arr.push(newS.charAt(i))
+      s1 += newS.charAt(i)
+    }
+  }
+  for(let j=arr.length-1; 0<=j; j--){
+    s2 += arr[j]
+  }
+  if(s1 === s2){
+    return true
+  }
+  return false
+};
+```
+
+### 报数
+
+报数序列是一个整数序列，按照其中的整数的顺序进行报数，得到下一个数。其前五项如下：
+
+```
+1.     1
+2.     11
+3.     21
+4.     1211
+5.     111221
+
+输入: 4
+输出: "1211"
+```
+
+1 被读作  "one 1"  ("一个一") , 即 11。
+11 被读作 "two 1s" ("两个一"）, 即 21。
+21 被读作 "one 2",  "one 1" （"一个二" ,  "一个一") , 即 1211。
+
+给定一个正整数 n（1 ≤ n ≤ 30），输出报数序列的第 n 项。
+
+注意：整数顺序将表示为一个字符串。
+
+```js
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var countAndSay = function(n) {
+     var _str = '1';
+    for(var i=1;i<n;i++){
+        _str = _str.match(/1+|2+|3+|4+|5+|6+|7+|8+|9+/g).map(v=>''+v.length+v[0]).join('');
+    }
+    return _str
 };
 ```
