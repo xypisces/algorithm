@@ -143,6 +143,7 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
  * @return {number}
  */
 var romanToInt = function(s) {
+  //暴力解法1
   let count = 0;
   let i = 0
   while(i<s.length){
@@ -201,6 +202,23 @@ var romanToInt = function(s) {
         break;
       default:
         break;
+    }
+  }
+  return count
+  //数组索引法
+  let roman = ['I','V','X','L','C','D','M','IV','IX','XL','XC','CD','CM']
+  let num = [1,5,10,50,100,500,1000,4,9,40,90,400,900]
+  let count = 0
+  let i = 0
+  while(i<s.length){
+    let index = roman.indexOf(s.charAt(i))
+    let index2 = roman.indexOf(s.charAt(i)+s.charAt(i+1))
+    if(index2 !== -1) {
+      count += num[index2]
+      i+=2
+    }else{
+      count += num[index]
+      i+=1
     }
   }
   return count

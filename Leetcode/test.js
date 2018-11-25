@@ -80,69 +80,20 @@ console.log(countAndSay(6))
 // 111221
 console.log('------------')
 var romanToInt = function(s) {
-  let count = 0;
+  let roman = ['I','V','X','L','C','D','M','IV','IX','XL','XC','CD','CM']
+  let num = [1,5,10,50,100,500,1000,4,9,40,90,400,900]
+  let count = 0
   let i = 0
-  console.log(s.length)
   while(i<s.length){
-    console.log('s',s.charAt(i))
-    console.log('i',i)
-    switch(s.charAt(i)){
-      case 'M':
-        count+=1000
-        i++;
-        break;
-      case 'D':
-        count+=500
-        i++;
-        break;
-      case 'C':
-        if(i<s.length && s.charAt(i+1) === 'D'){
-          count+=400
-          i+=2
-        }else if(i<s.length && s.charAt(i+1) === 'M'){
-          count+=900
-          i+=2
-        }else{
-          count+=100
-          i+=1
-        }
-        break;
-      case 'L':
-        count+=50;
-        i++;
-        break;
-      case 'X':
-        if(i<s.length && s.charAt(i+1)  === 'L'){
-          count+=40
-          i+=2
-        }else if(i<s.length && s.charAt(i+1)  === 'C'){
-          count+=90
-          i+=2
-        }else{
-          count+=10
-          i+=1
-        }
-        break;
-      case 'V':
-        count+=5;
-        i++;
-        break;
-      case 'I':
-        if(i<s.length && s.charAt(i+1)  === 'V'){
-          count+=4
-          i+=2
-        }else if(i<s.length && s.charAt(i+1)  === 'X'){
-          count+=9
-          i+=2
-        }else{
-          count+=1
-          i+=1
-        }
-        break;
-      default:
-        break;
+    let index = roman.indexOf(s.charAt(i))
+    let index2 = roman.indexOf(s.charAt(i)+s.charAt(i+1))
+    if(index2 !== -1) {
+      count += num[index2]
+      i+=2
+    }else{
+      count += num[index]
+      i+=1
     }
-    console.log(count)
   }
   return count
 };
