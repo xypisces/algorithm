@@ -46,6 +46,8 @@ var merge = function(nums1, m, nums2, n) {
 所以，4 是第一个错误的版本。
 ```
 
+分析： 就是二分查找法，维护两个指针，依次二分，找到最终的点
+
 ```js
 /**
  * Definition for isBadVersion()
