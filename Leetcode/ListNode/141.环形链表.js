@@ -81,26 +81,25 @@
  * @param {ListNode} head
  * @return {boolean}
  */
+// if (head == null || head.next == null) {
+//   return false;
+//   }
+//   var low = head;
+//   var fast = head.next;
+//   while(low !== fast) {
+//     if(fast === null || fast.next === null) {
+//       return false;
+//     }
+//     low = head.next;
+//     fast = head.next.next;
+//   }
+//   return true;
 var hasCycle = function(head) {
-  // if (head == null || head.next == null) {
-  //   return false;
-  //   }
-  //   var low = head;
-  //   var fast = head.next;
-  //   while(low !== fast) {
-  //     if(fast === null || fast.next === null) {
-  //       return false;
-  //     }
-  //     low = head.next;
-  //     fast = head.next.next;
-  //   }
-  //   return true;
   let p1 = head;
   let p2 = head;
-
   while(p2 && p2.next && p2.next.next) {
-    p1 = head.next;
-    p2 = head.next.next;
+    p1 = p1.next;
+    p2 = p2.next.next;
     if(p1 === p2) {
       return true
     }
