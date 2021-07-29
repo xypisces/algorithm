@@ -33,11 +33,11 @@ Trie 树
 
 [字符串匹配算法(KMP)]('./../theory/KMP.md)
 
-DFS,BFS
+[DFS,BFS]('./../theory/DFS-BFS.md)
 
 双指针
 
-滑动窗口
+[滑动窗口]('../../theory/滑动窗口.md)
 
 递归
 
