@@ -67,26 +67,26 @@
  * @return {number[]}
  */
 var postorderTraversal = function(root) {
-  // let res = [];
-  // if(!root) return res;
-  // res = res.concat(postorderTraversal(root.left));
-  // res = res.concat(postorderTraversal(root.right));
-  // res.push(root.val);
-  // return res;
   let res = [];
-  if(root === null) return res;
-  let stack = [];
-  let cur = root;
-  while(cur || stack.length) { 
-    while(cur) {
-      res.push(cur.val);
-      stack.push(cur);
-      cur = cur.right;
-    }
-    cur = stack.pop();
-    cur = cur.left;
-  }
-  return res.reverse()
+  if(!root) return res;
+  res = res.concat(postorderTraversal(root.left));
+  res = res.concat(postorderTraversal(root.right));
+  res.push(root.val);
+  return res;
+  // let res = [];
+  // if(root === null) return res;
+  // let stack = [];
+  // let cur = root;
+  // while(cur || stack.length) { 
+  //   while(cur) {
+  //     res.push(cur.val);
+  //     stack.push(cur);
+  //     cur = cur.right;
+  //   }
+  //   cur = stack.pop();
+  //   cur = cur.left;
+  // }
+  // return res.reverse()
 };
 // @lc code=end
 
